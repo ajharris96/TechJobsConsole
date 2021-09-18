@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TechJobsConsole
 {
@@ -119,15 +120,19 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
+            List<Dictionary<string, string>> sortedJobs = someJobs.OrderBy(x=>x["name"]).ToList();
+
+
             if (someJobs.Count == 0)
             {
                 Console.WriteLine("Sorry, no results.");
             }
             else
             {
-                for (int i = 0; i<someJobs.Count; i++){
+                for (int i = 0; i<sortedJobs.Count; i++){
+
                     Console.WriteLine("\n*****");
-                    foreach (KeyValuePair<string,string> job in someJobs[i])
+                    foreach (KeyValuePair<string,string> job in sortedJobs[i])
                     {
                         Console.WriteLine(job.Key + ": " + job.Value);
                         
